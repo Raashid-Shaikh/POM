@@ -18,10 +18,22 @@ public class ContactsPage extends testBase{
 	@FindBy(xpath="//div[@class='table-wrapper']//td[4]")
 	WebElement toGetLocation;
 	
+	@FindBy(xpath="//input[@name='first_name']")
+	WebElement FirstName;
+	
+	@FindBy(xpath="//input[@name='last_name']")
+	WebElement LastName;
+	
+	@FindBy(xpath="//input[@name='department']")
+	WebElement Department;
+	
+	@FindBy(xpath="//button[@class='ui linkedin button']")
+	WebElement SaveBtn;
 	
 	public ContactsPage() {
 		PageFactory.initElements(driver, this);
 	}
+	
 	public boolean CheckContactsLabel() {
 		return ContactsLabel.isDisplayed();
 	}
@@ -30,5 +42,14 @@ public class ContactsPage extends testBase{
 		System.out.println(toGetLocation.getLocation());
 		ContactName.click();
 	}
+	
+	
+	public void createNewContact(String fName, String lname, String depInfo) {
+		FirstName.sendKeys(fName);
+		LastName.sendKeys(lname);
+		Department.sendKeys(depInfo);
+		SaveBtn.click();
+	}
+	
 	
 }

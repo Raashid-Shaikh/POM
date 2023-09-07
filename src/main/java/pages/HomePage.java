@@ -1,6 +1,9 @@
 package pages;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -20,6 +23,8 @@ public class HomePage extends testBase{
 	@FindBy(xpath="//div[@class='menu-item-wrapper'][6]")
 	WebElement taskLink;
 	
+	@FindBy(xpath="//button[@class='ui linkedin button'][1]//i")
+	WebElement CreateNewContactBtn;
 	
 	public HomePage() {
 		PageFactory.initElements(driver, this);
@@ -45,6 +50,15 @@ public class HomePage extends testBase{
 		dealsLink.click();
 		return new DealsPage();
 		
+	}
+	
+	public void clickOnAddContact()  {
+		Actions action = new Actions(driver);
+		action.moveToElement(contactsLink).click().perform();
+		
+		
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		action.moveToElement(CreateNewContactBtn).click().perform();
 	}
 	
 	

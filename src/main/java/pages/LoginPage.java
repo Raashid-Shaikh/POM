@@ -1,9 +1,10 @@
 package pages;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import base.testBase;
 
@@ -27,13 +28,13 @@ public class LoginPage extends testBase{
 		PageFactory.initElements(driver, this);
 	}
 	
-	public HomePage Login(String a, String b) throws InterruptedException   {
+	public HomePage Login(String a, String b)    {
 		
 		LogButton.click();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Email.sendKeys(a);
 		Pass.sendKeys(b);
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		LoginButton.click();
 		
 		return new HomePage();
